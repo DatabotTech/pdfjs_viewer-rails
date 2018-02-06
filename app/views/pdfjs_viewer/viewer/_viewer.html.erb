@@ -341,7 +341,11 @@ See https://github.com/adobe-type-tools/cmap-resources
   <% if params[:print] %>
     <script type="text/javascript">
       $(window).load(function(){
-        window.print();
+        document.addEventListener('textlayerrendered', function (e) {
+          if (e.detail.pageNumber === PDFViewerApplication.page) {
+            window.print();
+          }
+        }, true);
       });
     </script>
   <% end %>
