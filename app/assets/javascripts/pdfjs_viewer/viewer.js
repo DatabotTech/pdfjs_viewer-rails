@@ -7804,10 +7804,10 @@ window.addEventListener('keydown', function keydown(evt) {
   // CTRL+ALT or Option+Command
   if (cmd === 3 || cmd === 10) {
     switch (evt.keyCode) {
-      case 80: // p
-        PDFViewerApplication.requestPresentationMode();
-        handled = true;
-        break;
+      // case 80: // p
+      //   PDFViewerApplication.requestPresentationMode();
+      //   handled = true;
+      //   break;
       case 71: // g
         // focuses input#pageNumber field
         document.getElementById('pageNumber').select();
@@ -7904,11 +7904,11 @@ window.addEventListener('keydown', function keydown(evt) {
       //   }
       //   break;
 
-      // case 72: // 'h'
-      //   if (!isViewerInPresentationMode) {
-      //     HandTool.toggle();
-      //   }
-      //   break;
+      case 72: // 'h'
+        if (!isViewerInPresentationMode) {
+           HandTool.toggle();
+        }
+        break;
       // case 82: // 'r'
       //   PDFViewerApplication.rotatePages(90);
       //   break;
@@ -7933,11 +7933,7 @@ window.addEventListener('keydown', function keydown(evt) {
   // }
 
   if (!handled && !isViewerInPresentationMode) {
-    // 33=Page Up  34=Page Down  35=End    36=Home
-    // 37=Left     38=Up         39=Right  40=Down
-    // 32=Spacebar
-    if ((evt.keyCode >= 33 && evt.keyCode <= 40) ||
-        (curElementTagName !== 'BUTTON')) {
+    if (evt.keyCode >= 33 && evt.keyCode <= 40 && curElementTagName !== 'BUTTON') { //|| evt.keyCode === 32 
       ensureViewerFocused = true;
     }
   }
